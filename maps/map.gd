@@ -15,17 +15,17 @@ func _input(event: InputEvent) -> void:
 		if event.is_pressed():
 			if ball.linear_velocity.length() < minStopSpeed:
 				isMouseDown = true
-				mousePos = get_global_mouse_position()  # ✅ corregido
+				mousePos = get_global_mouse_position() 
 		else:
 			if isMouseDown and ball.linear_velocity.length() < minStopSpeed:
 				isMouseDown = false
-				var dragVector = ball.global_position - mousePos  # ✅ corregido
+				var dragVector = ball.global_position - mousePos 
 				var force = dragVector.normalized() * min(dragVector.length() * powerScale, maxForce)
 				ball.apply_impulse(force)  
 		queue_redraw()
 
 	if event is InputEventMouseMotion and isMouseDown:
-		mousePos = get_global_mouse_position()  # ✅ corregido
+		mousePos = get_global_mouse_position()  
 		queue_redraw()
 
 func _draw() -> void:
