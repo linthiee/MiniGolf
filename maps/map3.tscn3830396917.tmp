@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=4 uid="uid://b3l4b21ubu50r"]
+
+[ext_resource type="Script" uid="uid://ejpynmnoj733" path="res://maps/map.gd" id="1_o0tfb"]
+[ext_resource type="TileSet" uid="uid://bd6niiuaca2pu" path="res://terrain/tileset.tres" id="2_4tds2"]
+[ext_resource type="PackedScene" uid="uid://credldp5dja1j" path="res://objects/ball.tscn" id="3_ps52c"]
+[ext_resource type="Script" uid="uid://cly450kab235i" path="res://maps/water.gd" id="4_4tds2"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c3pkw"]
+friction = 0.5
+bounce = 0.85
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o0tfb"]
+size = Vector2(60, 125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4tds2"]
+size = Vector2(128, 61)
+
+[node name="Map" type="Node2D"]
+z_index = -1
+script = ExtResource("1_o0tfb")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+z_index = -2
+tile_map_data = PackedByteArray("AAD8/wAAAAAFAAcAAAD9/wAAAAABAAEAAAD//wAAAAABAAEAAAAAAAAAAAABAAEAAAAAAAEAAAABAAEAAAAAAAIAAAABAAEAAAD//wIAAAABAAEAAAAAAAMAAAABAAEAAAD//wMAAAABAAEAAAD+/wEAAAABAAEAAAD//wEAAAABAAEAAAD8////AAAFAAYAAAD9////AAABAAEAAAD9/wEAAAABAAEAAAD+/wAAAAABAAEAAAD+////AAABAAEAAAD/////AAABAAEAAAAAAP//AAABAAEAAAABAP//AAABAAEAAAABAAAAAAABAAEAAAABAAEAAAABAAEAAAABAAMAAAABAAEAAAABAAIAAAABAAEAAAAAAAQAAAADAAoAAAABAAQAAAABAAEAAAD//wQAAAACAAoAAAD+/wUAAAACAAwAAAD9/wUAAAABAAwAAAD8/wUAAAABAAEAAAD7/wUAAAABAAEAAAD6/wUAAAAAAAkAAAD//wUAAAACAAwAAAAAAAUAAAADAAwAAAABAAUAAAABAAEAAAD6/wQAAAABAAEAAAD6/wMAAAABAAEAAAD6/wIAAAABAAEAAAD6////AAABAAEAAAD8/wMAAAABAAEAAAD8/wQAAAABAAEAAAD7/wQAAAABAAEAAAD7/wMAAAABAAEAAAD+/wQAAAACAAoAAAD9/wQAAAABAAoAAAD9/wMAAAABAAEAAAD9/wIAAAABAAEAAAD5//7/AAAAAAAAAAD5////AAAAAAEAAAD5/wAAAAAAAAEAAAD5/wEAAAAAAAEAAAD5/wIAAAAAAAEAAAD5/wMAAAAAAAEAAAD5/wQAAAAAAAEAAAD7/wIAAAADAAgAAAD7/wEAAAADAAcAAAD7/wAAAAADAAcAAAD7////AAADAAYAAAD6/wAAAAABAAEAAAD6/wEAAAABAAEAAAD5/wUAAAAAAAEAAAD5/wYAAAAAAAIAAAD6/wYAAAABAAIAAAD7/wYAAAABAAIAAAD8/wYAAAABAAIAAAD9/wYAAAABAAIAAAD+/wYAAAABAAIAAAD//wYAAAABAAIAAAAAAAYAAAABAAIAAAABAAYAAAABAAIAAAACAAYAAAACAAIAAAACAAUAAAACAAEAAAACAAQAAAACAAEAAAACAAMAAAACAAEAAAACAAIAAAACAAEAAAACAAEAAAACAAEAAAACAAAAAAACAAEAAAACAP//AAACAAEAAAACAP7/AAACAAAAAAD6//7/AAABAAAAAAD7//7/AAABAAAAAAD8//7/AAABAAAAAAD9//7/AAABAAAAAAD+//7/AAABAAAAAAD///7/AAABAAAAAAAAAP7/AAABAAAAAAABAP7/AAABAAAAAAD8/wIAAAAFAAgAAAD+/wMAAAABAAEAAAD+/wIAAAABAAEAAAD8/wEAAAAFAAcAAAA=")
+tile_set = ExtResource("2_4tds2")
+
+[node name="Ball" parent="." groups=["player"] instance=ExtResource("3_ps52c")]
+position = Vector2(-16, 80)
+mass = 0.5
+physics_material_override = SubResource("PhysicsMaterial_c3pkw")
+linear_damp = 0.1
+
+[node name="Water" type="Area2D" parent="."]
+script = ExtResource("4_4tds2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Water"]
+position = Vector2(-127, 30.5)
+shape = SubResource("RectangleShape2D_o0tfb")
+
+[node name="Sand" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sand"]
+position = Vector2(-32, 158.5)
+shape = SubResource("RectangleShape2D_4tds2")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="body_entered" from="Ball" to="." method="_on_ball_body_entered"]
+[connection signal="body_entered" from="Water" to="Water" method="_on_ball_body_entered"]
