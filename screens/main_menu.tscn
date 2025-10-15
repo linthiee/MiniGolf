@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://brlkbng57n0dm"]
+
+[ext_resource type="Script" uid="uid://0n6c807v0w6k" path="res://screens/main_menu.gd" id="1_syqou"]
+[ext_resource type="Texture2D" uid="uid://pyf5vk77q3cc" path="res://screens/menu mini golf.png" id="1_yjv1r"]
+[ext_resource type="FontFile" uid="uid://btgwc7b2w7kky" path="res://utils/rainyhearts.ttf" id="2_45a01"]
+
+[sub_resource type="FontVariation" id="FontVariation_7uoiw"]
+
+[sub_resource type="Theme" id="Theme_yjv1r"]
+default_font = SubResource("FontVariation_7uoiw")
+
+[sub_resource type="LabelSettings" id="LabelSettings_45a01"]
+font = ExtResource("2_45a01")
+font_size = 61
+font_color = Color(1.8916494, 1.8916494, 1.7396945, 1)
+shadow_size = 3
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 236.0
+offset_right = -410.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_yjv1r")
+script = ExtResource("1_syqou")
+
+[node name="MenuMiniGolf" type="Sprite2D" parent="."]
+position = Vector2(253.75, 324.375)
+scale = Vector2(0.49072263, 0.41845706)
+texture = ExtResource("1_yjv1r")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 47.0
+offset_right = 504.0
+offset_bottom = 70.0
+text = "Mini Golf"
+label_settings = SubResource("LabelSettings_45a01")
+horizontal_alignment = 1
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 244.0
+offset_top = 280.0
+offset_right = 290.0
+offset_bottom = 311.0
+text = "Start"
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 321.0
+offset_right = 285.0
+offset_bottom = 352.0
+text = "Exit"
+
+[connection signal="button_up" from="Start" to="." method="_on_start_button_up"]
+[connection signal="button_up" from="Exit" to="." method="_on_exit_button_up"]

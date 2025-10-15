@@ -1,9 +1,16 @@
-[gd_scene load_steps=7 format=4 uid="uid://bdllryn6igqde"]
+[gd_scene load_steps=12 format=4 uid="uid://bdllryn6igqde"]
 
 [ext_resource type="Script" uid="uid://ejpynmnoj733" path="res://maps/map.gd" id="1_d6q2c"]
 [ext_resource type="TileSet" uid="uid://bd6niiuaca2pu" path="res://terrain/tileset.tres" id="1_urvl1"]
 [ext_resource type="PackedScene" uid="uid://credldp5dja1j" path="res://objects/ball.tscn" id="2_ers5l"]
+[ext_resource type="FontFile" uid="uid://btgwc7b2w7kky" path="res://utils/rainyhearts.ttf" id="2_p5exx"]
 [ext_resource type="Script" uid="uid://dk1qpuc03b4t4" path="res://objects/hole.gd" id="4_d6q2c"]
+[ext_resource type="Script" uid="uid://dqww8xts4ggnf" path="res://objects/ball.gd" id="5_58o0d"]
+[ext_resource type="Script" uid="uid://cmioa7lx86r1p" path="res://maps/control.gd" id="7_fgnob"]
+[ext_resource type="Texture2D" uid="uid://cv7bp2csnhogc" path="res://utils/Background_Paused.png" id="8_rhiq3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_58o0d"]
+font = ExtResource("2_p5exx")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c3pkw"]
 friction = 0.25
@@ -17,6 +24,83 @@ z_index = -1
 position = Vector2(488, 111)
 script = ExtResource("1_d6q2c")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_fgnob")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 315.0
+offset_top = 6.0
+offset_right = 768.0
+offset_bottom = 347.0
+texture = ExtResource("8_rhiq3")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 506.0
+offset_top = 110.0
+offset_right = 577.0
+offset_bottom = 185.0
+text = "You won!
+
+"
+
+[node name="Retry" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 489.0
+offset_top = 179.0
+offset_right = 539.0
+offset_bottom = 210.0
+text = "Retry
+"
+
+[node name="Menu" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 211.0
+offset_right = 541.0
+offset_bottom = 242.0
+text = "Menu"
+
+[node name="Exit" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 559.0
+offset_top = 210.0
+offset_right = 596.0
+offset_bottom = 241.0
+text = "Exit"
+
+[node name="Resume" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 545.0
+offset_top = 177.0
+offset_right = 553.0
+offset_bottom = 185.0
+text = "Resume"
+
+[node name="NextLevel" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 539.0
+offset_top = 179.0
+offset_right = 629.0
+offset_bottom = 210.0
+text = "Next Level"
+
+[node name="Movements" type="Label" parent="."]
+offset_left = -225.0
+offset_top = -129.0
+offset_right = 348.0
+offset_bottom = 192.0
+label_settings = SubResource("LabelSettings_58o0d")
+
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = -2
 tile_map_data = PackedByteArray("AAABAAAAAAABAAEAAAABAAEAAAABAAEAAAAAAAEAAAABAAEAAAD//wEAAAABAAEAAAD+/wEAAAABAAEAAAD9/wEAAAAAAAEAAAD9////AAAAAAEAAAD9/wAAAAAAAAEAAAD+////AAABAAEAAAD/////AAABAAEAAAD//wAAAAABAAEAAAAAAAAAAAABAAEAAAD+/wAAAAABAAEAAAD+//7/AAABAAAAAAD///7/AAABAAAAAAAAAP7/AAABAAAAAAABAP7/AAABAAAAAAD9//7/AAAAAAAAAAAAAP//AAABAAEAAAABAP//AAABAAEAAAACAP//AAABAAEAAAADAP//AAABAAEAAAAEAP//AAABAAEAAAACAAAAAAABAAEAAAACAP7/AAABAAAAAAADAP7/AAABAAAAAAAEAP7/AAABAAAAAAACAAEAAAABAAEAAAADAAEAAAABAAEAAAAEAAEAAAABAAEAAAAEAAAAAAABAAEAAAADAAAAAAAAAAkAAAAFAAAAAAACAAEAAAAFAP//AAACAAEAAAAFAP7/AAACAAAAAAAFAAEAAAACAAEAAAD+/wIAAAABAAIAAAD//wIAAAABAAIAAAAAAAIAAAABAAIAAAABAAIAAAABAAIAAAACAAIAAAABAAIAAAADAAIAAAABAAIAAAAEAAIAAAABAAIAAAD9/wIAAAAAAAwAAAAFAAIAAAAAAAwAAAD+/wMAAAAAAAwAAAD9/wMAAAAAAAwAAAD8/wMAAAAAAAwAAAD7/wMAAAAAAAwAAAD7/wIAAAAAAAwAAAD8/wIAAAAAAAwAAAD8/wEAAAAAAAwAAAD8/wAAAAAAAAwAAAD8////AAAAAAwAAAD8//7/AAAAAAwAAAD7//7/AAAAAAwAAAD7////AAAAAAwAAAD7/wAAAAAAAAwAAAD7/wEAAAAAAAwAAAD//wMAAAAAAAwAAAAAAAMAAAAAAAwAAAABAAMAAAAAAAwAAAACAAMAAAAAAAwAAAADAAMAAAAAAAwAAAAEAAMAAAAAAAwAAAAFAAMAAAAAAAwAAAAGAAMAAAAAAAwAAAAGAAIAAAAAAAwAAAAGAAEAAAAAAAwAAAAGAAAAAAAAAAwAAAAGAP//AAAAAAwAAAAGAP7/AAAAAAwAAAAGAP3/AAAAAAwAAAAFAP3/AAAAAAwAAAAEAP3/AAAAAAwAAAADAP3/AAAAAAwAAAACAP3/AAAAAAwAAAABAP3/AAAAAAwAAAAAAP3/AAAAAAwAAAD///3/AAAAAAwAAAD+//3/AAAAAAwAAAD9//3/AAAAAAwAAAD8//3/AAAAAAwAAAD7//3/AAAAAAwAAAAHAP3/AAAAAAwAAAAHAP7/AAAAAAwAAAAHAP//AAAAAAwAAAAHAAAAAAAAAAwAAAAHAAEAAAAAAAwAAAAHAAIAAAAAAAwAAAAHAAMAAAAAAAwAAAAIAPz/AAAAAAwAAAAIAP3/AAAAAAwAAAAIAP7/AAAAAAwAAAAIAP//AAAAAAwAAAAIAAAAAAAAAAwAAAAIAAEAAAAAAAwAAAAIAAIAAAAAAAwAAAAIAAMAAAAAAAwAAAAHAAQAAAAAAAwAAAAGAAQAAAAAAAwAAAAFAAQAAAAAAAwAAAAEAAQAAAAAAAwAAAADAAQAAAAAAAwAAAD//wQAAAAAAAwAAAD+/wQAAAAAAAwAAAD9/wQAAAAAAAwAAAD8/wQAAAAAAAwAAAD6////AAAAAAwAAAD6//7/AAAAAAwAAAD6//3/AAAAAAwAAAD7//z/AAAAAAwAAAD8//z/AAAAAAwAAAD9//z/AAAAAAwAAAD+//z/AAAAAAwAAAD///z/AAAAAAwAAAAAAPz/AAAAAAwAAAABAPz/AAAAAAwAAAACAPz/AAAAAAwAAAADAPz/AAAAAAwAAAAEAPz/AAAAAAwAAAAFAPz/AAAAAAwAAAAGAPz/AAAAAAwAAAAHAPz/AAAAAAwAAAAJAPz/AAAAAAwAAAAKAPz/AAAAAAwAAAAKAP3/AAAAAAwAAAAKAP7/AAAAAAwAAAAKAP//AAAAAAwAAAAKAAAAAAAAAAwAAAAKAAEAAAAAAAwAAAAKAAIAAAAAAAwAAAAKAAMAAAAAAAwAAAAKAAQAAAAAAAwAAAAJAAQAAAAAAAwAAAAJAAUAAAAAAAwAAAAIAAUAAAAAAAwAAAAHAAUAAAAAAAwAAAAGAAUAAAAAAAwAAAAFAAUAAAAAAAwAAAAEAAUAAAAAAAwAAAADAAUAAAAAAAwAAAACAAUAAAAAAAwAAAACAAQAAAAAAAwAAAABAAQAAAAAAAwAAAAAAAQAAAAAAAwAAAABAAUAAAAAAAwAAAAAAAUAAAAAAAwAAAD//wUAAAAAAAwAAAD+/wUAAAAAAAwAAAD9/wUAAAAAAAwAAAD8/wUAAAAAAAwAAAD7/wUAAAAAAAwAAAD6/wUAAAAAAAwAAAD5/wUAAAAAAAwAAAD5/wQAAAAAAAwAAAD5/wMAAAAAAAwAAAD5/wIAAAAAAAwAAAD5/wEAAAAAAAwAAAD5/wAAAAAAAAwAAAD5////AAAAAAwAAAD5//7/AAAAAAwAAAD5//3/AAAAAAwAAAD5//z/AAAAAAwAAAD6//z/AAAAAAwAAAD6/wAAAAAAAAwAAAD6/wEAAAAAAAwAAAD6/wIAAAAAAAwAAAD6/wMAAAAAAAwAAAD6/wQAAAAAAAwAAAD7/wQAAAAAAAwAAAAIAAQAAAAAAAwAAAAJAAMAAAAAAAwAAAAJAAIAAAAAAAwAAAAJAAEAAAAAAAwAAAAJAAAAAAAAAAwAAAAJAP//AAAAAAwAAAAJAP7/AAAAAAwAAAAJAP3/AAAAAAwAAAAKAAUAAAAAAAwAAAA=")
@@ -27,6 +111,7 @@ position = Vector2(-50, 20)
 mass = 0.5
 physics_material_override = SubResource("PhysicsMaterial_c3pkw")
 linear_damp = 0.1
+script = ExtResource("5_58o0d")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(63, 32)
@@ -41,4 +126,10 @@ rotation = 0.43633232
 skew = 0.55850536
 shape = SubResource("CircleShape2D_p5exx")
 
+[connection signal="button_up" from="CanvasLayer/Control/Retry" to="CanvasLayer/Control" method="_on_retry_button_up"]
+[connection signal="button_up" from="CanvasLayer/Control/Menu" to="CanvasLayer/Control" method="_on_menu_button_up"]
+[connection signal="button_up" from="CanvasLayer/Control/Exit" to="CanvasLayer/Control" method="_on_exit_button_up"]
+[connection signal="button_up" from="CanvasLayer/Control/Resume" to="CanvasLayer/Control" method="_on_resume_button_up"]
+[connection signal="pressed" from="CanvasLayer/Control/Resume" to="CanvasLayer/Control" method="_on_resume_pressed"]
+[connection signal="button_up" from="CanvasLayer/Control/NextLevel" to="CanvasLayer/Control" method="_on_next_level_button_up"]
 [connection signal="body_entered" from="Hole" to="Hole" method="_on_body_entered"]

@@ -11,6 +11,15 @@ config_version=5
 [application]
 
 config/name="MiniGolf"
-run/main_scene="uid://b3l4b21ubu50r"
+run/main_scene="uid://brlkbng57n0dm"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://utils/icon.svg"
+
+[autoload]
+
+LevelManager="*res://globals/LevelManager.tscn"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

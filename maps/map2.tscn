@@ -1,10 +1,16 @@
-[gd_scene load_steps=8 format=4 uid="uid://cvp60xypc1uq2"]
+[gd_scene load_steps=12 format=4 uid="uid://cvp60xypc1uq2"]
 
 [ext_resource type="Script" uid="uid://ejpynmnoj733" path="res://maps/map.gd" id="1_s43rf"]
+[ext_resource type="FontFile" uid="uid://btgwc7b2w7kky" path="res://utils/rainyhearts.ttf" id="2_4k56d"]
 [ext_resource type="TileSet" uid="uid://bd6niiuaca2pu" path="res://terrain/tileset.tres" id="2_uf18y"]
 [ext_resource type="PackedScene" uid="uid://credldp5dja1j" path="res://objects/ball.tscn" id="3_qqv0e"]
 [ext_resource type="Script" uid="uid://dqww8xts4ggnf" path="res://objects/ball.gd" id="4_qqv0e"]
 [ext_resource type="Script" uid="uid://dk1qpuc03b4t4" path="res://objects/hole.gd" id="4_uf18y"]
+[ext_resource type="Script" uid="uid://cmioa7lx86r1p" path="res://maps/control.gd" id="7_ys3d7"]
+[ext_resource type="Texture2D" uid="uid://cv7bp2csnhogc" path="res://utils/Background_Paused.png" id="8_qkxbm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qqv0e"]
+font = ExtResource("2_4k56d")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c3pkw"]
 friction = 0.5
@@ -17,6 +23,13 @@ radius = 8.142146
 z_index = -1
 position = Vector2(488, 111)
 script = ExtResource("1_s43rf")
+
+[node name="Movements" type="Label" parent="."]
+offset_left = -241.0
+offset_top = -97.0
+offset_right = 223.0
+offset_bottom = 160.0
+label_settings = SubResource("LabelSettings_qqv0e")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = -2
@@ -43,4 +56,80 @@ rotation = 0.43633232
 skew = 0.55850536
 shape = SubResource("CircleShape2D_qqv0e")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_ys3d7")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 315.0
+offset_top = 6.0
+offset_right = 768.0
+offset_bottom = 347.0
+texture = ExtResource("8_qkxbm")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 506.0
+offset_top = 110.0
+offset_right = 577.0
+offset_bottom = 185.0
+text = "You won!
+
+"
+
+[node name="Retry" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 489.0
+offset_top = 179.0
+offset_right = 539.0
+offset_bottom = 210.0
+text = "Retry
+"
+
+[node name="Menu" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 211.0
+offset_right = 541.0
+offset_bottom = 242.0
+text = "Menu"
+
+[node name="Exit" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 559.0
+offset_top = 210.0
+offset_right = 596.0
+offset_bottom = 241.0
+text = "Exit"
+
+[node name="Resume" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 545.0
+offset_top = 177.0
+offset_right = 553.0
+offset_bottom = 185.0
+text = "Resume"
+
+[node name="NextLevel" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 539.0
+offset_top = 179.0
+offset_right = 629.0
+offset_bottom = 210.0
+text = "Next Level"
+
 [connection signal="body_entered" from="Hole" to="Hole" method="_on_body_entered"]
+[connection signal="button_up" from="CanvasLayer/Control/Retry" to="CanvasLayer/Control" method="_on_retry_button_up"]
+[connection signal="button_up" from="CanvasLayer/Control/Menu" to="CanvasLayer/Control" method="_on_menu_button_up"]
+[connection signal="button_up" from="CanvasLayer/Control/Exit" to="CanvasLayer/Control" method="_on_exit_button_up"]
+[connection signal="button_up" from="CanvasLayer/Control/Resume" to="CanvasLayer/Control" method="_on_resume_button_up"]
+[connection signal="pressed" from="CanvasLayer/Control/Resume" to="CanvasLayer/Control" method="_on_resume_pressed"]
+[connection signal="button_up" from="CanvasLayer/Control/NextLevel" to="CanvasLayer/Control" method="_on_next_level_button_up"]

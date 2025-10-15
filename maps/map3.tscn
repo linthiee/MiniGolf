@@ -1,12 +1,18 @@
-[gd_scene load_steps=12 format=4 uid="uid://b3l4b21ubu50r"]
+[gd_scene load_steps=16 format=4 uid="uid://b3l4b21ubu50r"]
 
 [ext_resource type="Script" uid="uid://ejpynmnoj733" path="res://maps/map.gd" id="1_o0tfb"]
 [ext_resource type="TileSet" uid="uid://bd6niiuaca2pu" path="res://terrain/tileset.tres" id="2_4tds2"]
+[ext_resource type="FontFile" uid="uid://btgwc7b2w7kky" path="res://utils/rainyhearts.ttf" id="2_kvtmt"]
 [ext_resource type="PackedScene" uid="uid://credldp5dja1j" path="res://objects/ball.tscn" id="3_ps52c"]
 [ext_resource type="Script" uid="uid://cly450kab235i" path="res://objects/water.gd" id="4_4tds2"]
 [ext_resource type="Script" uid="uid://dqww8xts4ggnf" path="res://objects/ball.gd" id="4_ps52c"]
 [ext_resource type="Script" uid="uid://2mkjiubfv7bl" path="res://objects/sand.gd" id="6_csgcl"]
 [ext_resource type="Script" uid="uid://dk1qpuc03b4t4" path="res://objects/hole.gd" id="7_pxxju"]
+[ext_resource type="Script" uid="uid://cmioa7lx86r1p" path="res://maps/control.gd" id="9_o0n4k"]
+[ext_resource type="Texture2D" uid="uid://cv7bp2csnhogc" path="res://utils/Background_Paused.png" id="10_dgmk8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pxxju"]
+font = ExtResource("2_kvtmt")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c3pkw"]
 friction = 0.5
@@ -24,6 +30,18 @@ radius = 8.142146
 [node name="Map" type="Node2D"]
 z_index = -1
 script = ExtResource("1_o0tfb")
+
+[node name="Movements" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -301.0
+offset_top = -59.905
+offset_right = 301.0
+offset_bottom = 278.095
+grow_horizontal = 2
+label_settings = SubResource("LabelSettings_pxxju")
+horizontal_alignment = 1
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = -2
@@ -64,7 +82,83 @@ rotation = 0.43633232
 skew = 0.55850536
 shape = SubResource("CircleShape2D_kvtmt")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_o0n4k")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 315.0
+offset_top = 6.0
+offset_right = 768.0
+offset_bottom = 347.0
+texture = ExtResource("10_dgmk8")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 506.0
+offset_top = 110.0
+offset_right = 577.0
+offset_bottom = 185.0
+text = "You won!
+
+"
+
+[node name="Retry" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 489.0
+offset_top = 179.0
+offset_right = 539.0
+offset_bottom = 210.0
+text = "Retry
+"
+
+[node name="Menu" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 211.0
+offset_right = 541.0
+offset_bottom = 242.0
+text = "Menu"
+
+[node name="Exit" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 559.0
+offset_top = 210.0
+offset_right = 596.0
+offset_bottom = 241.0
+text = "Exit"
+
+[node name="Resume" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 545.0
+offset_top = 177.0
+offset_right = 553.0
+offset_bottom = 185.0
+text = "Resume"
+
+[node name="NextLevel" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 539.0
+offset_top = 179.0
+offset_right = 629.0
+offset_bottom = 210.0
+text = "Next Level"
+
 [connection signal="body_entered" from="Ball" to="." method="_on_ball_body_entered"]
 [connection signal="body_entered" from="Water" to="Water" method="_on_ball_body_entered"]
 [connection signal="body_entered" from="Sand" to="Sand" method="_on_ball_body_entered"]
 [connection signal="body_entered" from="Hole" to="Hole" method="_on_body_entered"]
+[connection signal="button_up" from="CanvasLayer/Control/Retry" to="CanvasLayer/Control" method="_on_retry_button_up"]
+[connection signal="button_up" from="CanvasLayer/Control/Menu" to="CanvasLayer/Control" method="_on_menu_button_up"]
+[connection signal="button_up" from="CanvasLayer/Control/Exit" to="CanvasLayer/Control" method="_on_exit_button_up"]
+[connection signal="button_up" from="CanvasLayer/Control/Resume" to="CanvasLayer/Control" method="_on_resume_button_up"]
+[connection signal="pressed" from="CanvasLayer/Control/Resume" to="CanvasLayer/Control" method="_on_resume_pressed"]
+[connection signal="button_up" from="CanvasLayer/Control/NextLevel" to="CanvasLayer/Control" method="_on_next_level_button_up"]

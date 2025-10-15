@@ -1,5 +1,100 @@
-[gd_scene load_steps=2 format=3 uid="uid://cm0m8f82xtdlt"]
+[gd_scene load_steps=7 format=3 uid="uid://cm0m8f82xtdlt"]
 
 [ext_resource type="PackedScene" uid="uid://v8w2fryetoa2" path="res://maps/templateMap.tscn" id="1_7bm4j"]
+[ext_resource type="FontFile" uid="uid://btgwc7b2w7kky" path="res://utils/rainyhearts.ttf" id="2_uc756"]
+[ext_resource type="Script" uid="uid://dqww8xts4ggnf" path="res://objects/ball.gd" id="3_xovua"]
+[ext_resource type="Script" uid="uid://cmioa7lx86r1p" path="res://maps/control.gd" id="4_7yj33"]
+[ext_resource type="Texture2D" uid="uid://cv7bp2csnhogc" path="res://utils/Background_Paused.png" id="5_183my"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xovua"]
+font = ExtResource("2_uc756")
 
 [node name="Map" instance=ExtResource("1_7bm4j")]
+
+[node name="Movements" parent="." index="0"]
+z_index = 1
+offset_left = -227.0
+offset_top = -128.0
+offset_right = 351.0
+offset_bottom = 191.0
+label_settings = SubResource("LabelSettings_xovua")
+
+[node name="Ball" parent="." index="2"]
+script = ExtResource("3_xovua")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." index="5"]
+
+[node name="Control" type="Control" parent="CanvasLayer2" index="0"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_7yj33")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer2/Control" index="0"]
+layout_mode = 0
+offset_left = 315.0
+offset_top = 6.0
+offset_right = 768.0
+offset_bottom = 347.0
+texture = ExtResource("5_183my")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer2/Control" index="1"]
+layout_mode = 0
+offset_left = 506.0
+offset_top = 110.0
+offset_right = 577.0
+offset_bottom = 185.0
+text = "You won!
+
+"
+
+[node name="Retry" type="Button" parent="CanvasLayer2/Control" index="2"]
+layout_mode = 0
+offset_left = 489.0
+offset_top = 179.0
+offset_right = 539.0
+offset_bottom = 210.0
+text = "Retry
+"
+
+[node name="Menu" type="Button" parent="CanvasLayer2/Control" index="3"]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 211.0
+offset_right = 541.0
+offset_bottom = 242.0
+text = "Menu"
+
+[node name="Exit" type="Button" parent="CanvasLayer2/Control" index="4"]
+layout_mode = 0
+offset_left = 559.0
+offset_top = 210.0
+offset_right = 596.0
+offset_bottom = 241.0
+text = "Exit"
+
+[node name="Resume" type="Button" parent="CanvasLayer2/Control" index="5"]
+layout_mode = 0
+offset_left = 545.0
+offset_top = 177.0
+offset_right = 553.0
+offset_bottom = 185.0
+text = "Resume"
+
+[node name="NextLevel" type="Button" parent="CanvasLayer2/Control" index="6"]
+layout_mode = 0
+offset_left = 539.0
+offset_top = 179.0
+offset_right = 629.0
+offset_bottom = 210.0
+text = "Next Level"
+
+[connection signal="button_up" from="CanvasLayer2/Control/Retry" to="CanvasLayer2/Control" method="_on_retry_button_up"]
+[connection signal="button_up" from="CanvasLayer2/Control/Menu" to="CanvasLayer2/Control" method="_on_menu_button_up"]
+[connection signal="button_up" from="CanvasLayer2/Control/Exit" to="CanvasLayer2/Control" method="_on_exit_button_up"]
+[connection signal="button_up" from="CanvasLayer2/Control/Resume" to="CanvasLayer2/Control" method="_on_resume_button_up"]
+[connection signal="pressed" from="CanvasLayer2/Control/Resume" to="CanvasLayer2/Control" method="_on_resume_pressed"]
+[connection signal="button_up" from="CanvasLayer2/Control/NextLevel" to="CanvasLayer2/Control" method="_on_next_level_button_up"]
