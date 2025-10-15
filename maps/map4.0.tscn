@@ -1,0 +1,167 @@
+[gd_scene load_steps=14 format=4 uid="uid://s5sygvv0agrc"]
+
+[ext_resource type="PackedScene" uid="uid://v8w2fryetoa2" path="res://maps/templateMap.tscn" id="1_be5oq"]
+[ext_resource type="FontFile" uid="uid://btgwc7b2w7kky" path="res://utils/rainyhearts.ttf" id="2_jshe1"]
+[ext_resource type="Script" uid="uid://dqww8xts4ggnf" path="res://objects/ball.gd" id="3_4elga"]
+[ext_resource type="Script" uid="uid://cly450kab235i" path="res://objects/water.gd" id="4_rqy7m"]
+[ext_resource type="Script" uid="uid://2mkjiubfv7bl" path="res://objects/sand.gd" id="5_ebbpo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xovua"]
+font = ExtResource("2_jshe1")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m628i"]
+size = Vector2(62, 221)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ouymd"]
+size = Vector2(444.5, 61.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmvgo"]
+size = Vector2(93, 65)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7gcq"]
+size = Vector2(32, 30.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sedmy"]
+size = Vector2(63.5, 98)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3joj"]
+size = Vector2(65, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cy3gl"]
+size = Vector2(35, 32.125)
+
+[node name="Map" instance=ExtResource("1_be5oq")]
+
+[node name="Movements" parent="." index="0"]
+z_index = 1
+offset_left = -227.0
+offset_top = -128.0
+offset_right = 351.0
+offset_bottom = 191.0
+label_settings = SubResource("LabelSettings_xovua")
+
+[node name="TileMapLayer" parent="." index="1"]
+tile_map_data = PackedByteArray("AAABAAAAAAACAAsAAAABAAEAAAACAAsAAAAAAAEAAAACAAsAAAD//wEAAAABAAEAAAD+/wEAAAABAAEAAAD9/wEAAAACAAsAAAD9////AAAEAAcAAAD9/wAAAAACAAsAAAD+////AAAEAAcAAAD/////AAAEAAcAAAD//wAAAAABAAEAAAAAAAAAAAACAAsAAAD+/wAAAAACAAsAAAD+//7/AAAEAAYAAAD///7/AAAEAAYAAAAAAP7/AAAEAAYAAAABAP7/AAAEAAYAAAD9//7/AAAEAAYAAAAAAP//AAAEAAcAAAABAP//AAAEAAcAAAACAP//AAAEAAcAAAADAP//AAAEAAcAAAAEAP//AAAEAAcAAAACAAAAAAAEAAkAAAACAP7/AAAEAAYAAAADAP7/AAAEAAYAAAAEAP7/AAAEAAYAAAACAAEAAAACAAsAAAADAAEAAAACAAsAAAAEAAEAAAABAAEAAAAEAAAAAAABAAEAAAADAAAAAAAAAAkAAAAFAAAAAAABAAEAAAAFAP//AAAEAAcAAAAFAP7/AAAEAAYAAAAFAAEAAAACAAsAAAD+/wIAAAACAAsAAAD//wIAAAABAAEAAAAAAAIAAAACAAsAAAABAAIAAAACAAsAAAACAAIAAAADAAYAAAADAAIAAAAEAAYAAAAEAAIAAAAFAAYAAAD9/wIAAAACAAsAAAAFAAIAAAABAAEAAAD+/wMAAAAEAAcAAAD9/wMAAAAEAAcAAAD8/wMAAAAEAAcAAAD7/wMAAAADAAcAAAD7/wIAAAADAAcAAAD8/wIAAAAEAAcAAAD8/wEAAAAEAAcAAAD8/wAAAAAEAAcAAAD8////AAAEAAcAAAD8//7/AAAEAAYAAAD7//7/AAADAAYAAAD7////AAADAAcAAAD7/wAAAAADAAcAAAD7/wEAAAADAAcAAAD//wMAAAAEAAcAAAAAAAMAAAAEAAcAAAABAAMAAAAEAAcAAAACAAMAAAAEAAcAAAADAAMAAAAEAAcAAAAEAAMAAAAEAAcAAAAFAAMAAAAEAAcAAAAGAAMAAAAEAAcAAAAGAAIAAAACAAsAAAAGAAEAAAACAAsAAAAGAAAAAAACAAsAAAAGAP//AAAEAAcAAAAGAP7/AAAEAAYAAAAGAP3/AAABAAAAAAAFAP3/AAABAAAAAAAEAP3/AAABAAAAAAADAP3/AAABAAAAAAACAP3/AAABAAAAAAABAP3/AAABAAAAAAAAAP3/AAABAAAAAAD///3/AAABAAAAAAD+//3/AAABAAAAAAD9//3/AAABAAAAAAD8//3/AAABAAAAAAD7//3/AAABAAAAAAAHAP3/AAABAAAAAAAHAP7/AAAEAAYAAAAHAP//AAAEAAcAAAAHAAAAAAACAAsAAAAHAAEAAAACAAsAAAAHAAIAAAACAAsAAAAHAAMAAAAEAAcAAAAIAPz/AAAAAAwAAAAIAP3/AAABAAAAAAAIAP7/AAAFAAYAAAAIAP//AAAFAAcAAAAIAAAAAAAFAAcAAAAIAAEAAAACAAsAAAAIAAIAAAAFAAcAAAAIAAMAAAAFAAcAAAAHAAQAAAAEAAgAAAAGAAQAAAAEAAgAAAAFAAQAAAAEAAgAAAAEAAQAAAAEAAgAAAADAAQAAAAEAAgAAAD//wQAAAAEAAgAAAD+/wQAAAAEAAgAAAD9/wQAAAAEAAgAAAD8/wQAAAAEAAgAAAD6////AAAAAAEAAAD6//7/AAAAAAEAAAD6//3/AAAAAAAAAAD7//z/AAAAAAwAAAD8//z/AAAAAAwAAAD9//z/AAAAAAwAAAD+//z/AAAAAAwAAAD///z/AAAAAAwAAAAAAPz/AAAAAAwAAAABAPz/AAAAAAwAAAACAPz/AAAAAAwAAAADAPz/AAAAAAwAAAAEAPz/AAAAAAwAAAAFAPz/AAAAAAwAAAAGAPz/AAAAAAwAAAAHAPz/AAAAAAwAAAAJAPz/AAAAAAwAAAAKAPz/AAAAAAwAAAAKAP3/AAAAAAwAAAAKAP7/AAAAAAwAAAAKAP//AAAAAAwAAAAKAAAAAAAAAAwAAAAKAAEAAAAAAAwAAAAKAAIAAAAAAAwAAAAKAAMAAAAAAAwAAAAKAAQAAAAAAAwAAAAJAAQAAAACAAEAAAAJAAUAAAACAAIAAAAIAAUAAAABAAIAAAAHAAUAAAABAAIAAAAGAAUAAAABAAIAAAAFAAUAAAABAAIAAAAEAAUAAAABAAIAAAADAAUAAAABAAIAAAACAAUAAAABAAIAAAACAAQAAAAEAAgAAAABAAQAAAAEAAgAAAAAAAQAAAAEAAgAAAABAAUAAAABAAIAAAAAAAUAAAABAAIAAAD//wUAAAABAAIAAAD+/wUAAAABAAIAAAD9/wUAAAABAAIAAAD8/wUAAAABAAIAAAD7/wUAAAABAAIAAAD6/wUAAAAAAAIAAAD5/wUAAAAAAAwAAAD5/wQAAAAAAAwAAAD5/wMAAAAAAAwAAAD5/wIAAAAAAAwAAAD5/wEAAAAAAAwAAAD5/wAAAAAAAAwAAAD5////AAAAAAwAAAD5//7/AAAAAAwAAAD5//3/AAAAAAwAAAD5//z/AAAAAAwAAAD6//z/AAAAAAwAAAD6/wAAAAAAAAEAAAD6/wEAAAAAAAEAAAD6/wIAAAAAAAEAAAD6/wMAAAAAAAEAAAD6/wQAAAAAAAEAAAD7/wQAAAADAAgAAAAIAAQAAAAFAAgAAAAJAAMAAAACAAEAAAAJAAIAAAACAAEAAAAJAAEAAAACAAEAAAAJAAAAAAACAAEAAAAJAP//AAACAAEAAAAJAP7/AAACAAEAAAAJAP3/AAACAAAAAAAKAAUAAAAAAAwAAAA=")
+
+[node name="Ball" parent="." index="2"]
+script = ExtResource("3_4elga")
+
+[node name="CanvasLayer" parent="." index="5"]
+visible = false
+
+[node name="Control" parent="CanvasLayer" index="0"]
+offset_left = 173.0
+offset_top = 9.0
+offset_right = 866.0
+offset_bottom = 310.0
+
+[node name="TextureRect" parent="CanvasLayer/Control" index="0"]
+offset_left = 124.0
+offset_top = -27.0
+offset_right = 577.0
+offset_bottom = 314.0
+
+[node name="Label" parent="CanvasLayer/Control" index="1"]
+offset_left = 309.0
+offset_top = 70.0
+offset_right = 380.0
+offset_bottom = 145.0
+
+[node name="Retry" parent="CanvasLayer/Control" index="2"]
+offset_left = 275.0
+offset_top = 154.0
+offset_right = 325.0
+offset_bottom = 185.0
+
+[node name="Menu" parent="CanvasLayer/Control" index="3"]
+offset_left = 272.0
+offset_top = 190.0
+offset_right = 325.0
+offset_bottom = 221.0
+
+[node name="Exit" parent="CanvasLayer/Control" index="4"]
+offset_left = 369.0
+offset_top = 190.0
+offset_right = 406.0
+offset_bottom = 221.0
+
+[node name="Resume" parent="CanvasLayer/Control" index="5"]
+offset_left = 346.0
+offset_top = 188.0
+offset_right = 416.0
+offset_bottom = 219.0
+
+[node name="NextLevel" parent="CanvasLayer/Control" index="6"]
+offset_left = 339.0
+offset_top = 157.0
+offset_right = 429.0
+offset_bottom = 188.0
+
+[node name="Water" type="Area2D" parent="." index="6"]
+script = ExtResource("4_rqy7m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Water" index="0"]
+position = Vector2(-126, 47.5)
+shape = SubResource("RectangleShape2D_m628i")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Water" index="1"]
+position = Vector2(63.5, -33.25)
+shape = SubResource("RectangleShape2D_ouymd")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Water" index="2"]
+position = Vector2(65.75, 129.125)
+shape = SubResource("RectangleShape2D_ouymd")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Water" index="3"]
+position = Vector2(112.5, 99)
+shape = SubResource("RectangleShape2D_kmvgo")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Water" index="4"]
+position = Vector2(78, 14.625)
+shape = SubResource("RectangleShape2D_v7gcq")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Water" index="5"]
+position = Vector2(271, 15.75)
+shape = SubResource("RectangleShape2D_v7gcq")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Water" index="6"]
+position = Vector2(270, 82)
+shape = SubResource("RectangleShape2D_v7gcq")
+
+[node name="Sand" type="Area2D" parent="." index="7"]
+script = ExtResource("5_ebbpo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sand" index="0"]
+position = Vector2(30.75, 49)
+shape = SubResource("RectangleShape2D_sedmy")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sand" index="1"]
+position = Vector2(223, 47)
+shape = SubResource("RectangleShape2D_sedmy")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Sand" index="2"]
+position = Vector2(-63.5, 17.5)
+shape = SubResource("RectangleShape2D_p3joj")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Sand" index="3"]
+position = Vector2(-65, 79)
+shape = SubResource("RectangleShape2D_p3joj")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Sand" index="4"]
+position = Vector2(97, 48)
+shape = SubResource("RectangleShape2D_p3joj")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Sand" index="5"]
+position = Vector2(-80, 46.25)
+shape = SubResource("RectangleShape2D_cy3gl")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Sand" index="6"]
+position = Vector2(178, 47.9375)
+shape = SubResource("RectangleShape2D_cy3gl")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Sand" index="7"]
+position = Vector2(272, 49)
+shape = SubResource("RectangleShape2D_cy3gl")
+
+[connection signal="body_entered" from="Water" to="Water" method="_on_ball_body_entered"]
+[connection signal="body_entered" from="Sand" to="Sand" method="_on_ball_body_entered"]

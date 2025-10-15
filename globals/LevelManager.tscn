@@ -1,7 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1e616fw65g"]
+[gd_scene load_steps=3 format=3 uid="uid://c1e616fw65g"]
 
 [ext_resource type="Script" uid="uid://dja3u8otu5st1" path="res://globals/level_manager.gd" id="1_sbx32"]
+[ext_resource type="AudioStream" uid="uid://yi074twq162r" path="res://audio/Background_Theme.wav" id="2_efog1"]
 
 [node name="LevelManager" type="Node"]
 script = ExtResource("1_sbx32")
 levelPaths = Array[String](["uid://bdllryn6igqde", "uid://b3l4b21ubu50r", "uid://cm0m8f82xtdlt", "uid://cvp60xypc1uq2"])
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_efog1")
+autoplay = true

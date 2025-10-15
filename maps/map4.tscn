@@ -1,15 +1,37 @@
-[gd_scene load_steps=7 format=3 uid="uid://cm0m8f82xtdlt"]
+[gd_scene load_steps=14 format=4 uid="uid://cm0m8f82xtdlt"]
 
 [ext_resource type="PackedScene" uid="uid://v8w2fryetoa2" path="res://maps/templateMap.tscn" id="1_7bm4j"]
 [ext_resource type="FontFile" uid="uid://btgwc7b2w7kky" path="res://utils/rainyhearts.ttf" id="2_uc756"]
 [ext_resource type="Script" uid="uid://dqww8xts4ggnf" path="res://objects/ball.gd" id="3_xovua"]
-[ext_resource type="Script" uid="uid://cmioa7lx86r1p" path="res://maps/control.gd" id="4_7yj33"]
-[ext_resource type="Texture2D" uid="uid://cv7bp2csnhogc" path="res://utils/Background_Paused.png" id="5_183my"]
+[ext_resource type="Script" uid="uid://cly450kab235i" path="res://objects/water.gd" id="4_7yj33"]
+[ext_resource type="Script" uid="uid://2mkjiubfv7bl" path="res://objects/sand.gd" id="5_183my"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xovua"]
 font = ExtResource("2_uc756")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m628i"]
+size = Vector2(62, 221)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ouymd"]
+size = Vector2(446.5, 59.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmvgo"]
+size = Vector2(95.5, 65)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7gcq"]
+size = Vector2(36, 37.375)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sedmy"]
+size = Vector2(63.5, 98)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3joj"]
+size = Vector2(66.5, 33.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cy3gl"]
+size = Vector2(35.5, 32.125)
+
 [node name="Map" instance=ExtResource("1_7bm4j")]
+position = Vector2(4, -32)
 
 [node name="Movements" parent="." index="0"]
 z_index = 1
@@ -18,83 +40,177 @@ offset_top = -128.0
 offset_right = 351.0
 offset_bottom = 191.0
 label_settings = SubResource("LabelSettings_xovua")
+metadata/_edit_use_anchors_ = true
+
+[node name="TileMapLayer" parent="." index="1"]
+tile_map_data = PackedByteArray("AAADAAAAAAAAAAkAAAAGAP3/AAABAAAAAAAFAP3/AAABAAAAAAAEAP3/AAABAAAAAAADAP3/AAABAAAAAAACAP3/AAABAAAAAAABAP3/AAABAAAAAAAAAP3/AAABAAAAAAD///3/AAABAAAAAAD+//3/AAABAAAAAAD9//3/AAABAAAAAAD8//3/AAABAAAAAAD7//3/AAABAAAAAAAHAP3/AAABAAAAAAAIAPz/AAAAAAwAAAAIAP3/AAABAAAAAAD6////AAAAAAEAAAD6//7/AAAAAAEAAAD6//3/AAAAAAAAAAD7//z/AAAAAAwAAAD8//z/AAAAAAwAAAD9//z/AAAAAAwAAAD+//z/AAAAAAwAAAD///z/AAAAAAwAAAAAAPz/AAAAAAwAAAABAPz/AAAAAAwAAAACAPz/AAAAAAwAAAADAPz/AAAAAAwAAAAEAPz/AAAAAAwAAAAFAPz/AAAAAAwAAAAGAPz/AAAAAAwAAAAHAPz/AAAAAAwAAAAJAPz/AAAAAAwAAAAKAPz/AAAAAAwAAAAKAP3/AAAAAAwAAAAKAP7/AAAAAAwAAAAKAP//AAAAAAwAAAAKAAAAAAAAAAwAAAAKAAEAAAAAAAwAAAAKAAIAAAAAAAwAAAAKAAMAAAAAAAwAAAAKAAQAAAAAAAwAAAAJAAQAAAACAAEAAAAJAAUAAAACAAIAAAAIAAUAAAABAAIAAAAHAAUAAAABAAIAAAAGAAUAAAABAAIAAAAFAAUAAAABAAIAAAAEAAUAAAABAAIAAAADAAUAAAABAAIAAAACAAUAAAABAAIAAAABAAUAAAABAAIAAAAAAAUAAAABAAIAAAD//wUAAAABAAIAAAD+/wUAAAABAAIAAAD9/wUAAAABAAIAAAD8/wUAAAABAAIAAAD7/wUAAAABAAIAAAD6/wUAAAAAAAIAAAD5/wUAAAAAAAwAAAD5/wQAAAAAAAwAAAD5/wMAAAAAAAwAAAD5/wIAAAAAAAwAAAD5/wEAAAAAAAwAAAD5/wAAAAAAAAwAAAD5////AAAAAAwAAAD5//7/AAAAAAwAAAD5//3/AAAAAAwAAAD5//z/AAAAAAwAAAD6//z/AAAAAAwAAAD6/wAAAAAAAAEAAAD6/wEAAAAAAAEAAAD6/wIAAAAAAAEAAAD6/wMAAAAAAAEAAAAJAAMAAAACAAEAAAAJAAAAAAACAAEAAAAJAP//AAACAAEAAAAJAP7/AAACAAEAAAAJAP3/AAACAAAAAAAKAAUAAAAAAAwAAAAJAAIAAAACAAEAAAAJAAEAAAACAAEAAAD6/wQAAAAAAAEAAAD7//7/AAADAAYAAAD8//7/AAAEAAYAAAD9//7/AAAEAAYAAAD+//7/AAAEAAYAAAD///7/AAAEAAYAAAAAAP7/AAAEAAYAAAABAP7/AAAEAAYAAAACAP7/AAAEAAYAAAADAP7/AAAEAAYAAAAEAP7/AAAEAAYAAAAFAP7/AAAEAAYAAAAGAP7/AAAEAAYAAAAHAP7/AAAEAAYAAAAIAP7/AAAFAAYAAAAIAP//AAAFAAcAAAAIAAAAAAAFAAcAAAAIAAEAAAACAAsAAAAIAAIAAAAFAAcAAAAIAAMAAAAFAAcAAAAIAAQAAAAFAAgAAAD7/wQAAAADAAgAAAD8/wQAAAAEAAgAAAD9/wQAAAAEAAgAAAD+/wQAAAAEAAgAAAD//wQAAAAEAAgAAAAAAAQAAAAEAAgAAAABAAQAAAAEAAgAAAACAAQAAAAEAAgAAAADAAQAAAAEAAgAAAAEAAQAAAAEAAgAAAAFAAQAAAAEAAgAAAAGAAQAAAAEAAgAAAAHAAQAAAAEAAgAAAD7////AAADAAcAAAD7/wAAAAADAAcAAAD7/wEAAAADAAcAAAD7/wIAAAADAAcAAAD7/wMAAAADAAcAAAD8////AAAEAAcAAAD8/wAAAAAEAAcAAAD8/wEAAAAEAAcAAAD8/wIAAAAEAAcAAAD8/wMAAAAEAAcAAAD9/wMAAAAEAAcAAAD+/wMAAAAEAAcAAAD//wMAAAAEAAcAAAAAAAMAAAAEAAcAAAABAAMAAAAEAAcAAAACAAMAAAAEAAcAAAADAAMAAAAEAAcAAAAEAAMAAAAEAAcAAAAFAAMAAAAEAAcAAAAGAAMAAAAEAAcAAAAHAAMAAAAEAAcAAAAHAAIAAAACAAsAAAAHAAEAAAACAAsAAAAHAAAAAAACAAsAAAAHAP//AAAEAAcAAAAGAP//AAAEAAcAAAAFAP//AAAEAAcAAAAEAP//AAAEAAcAAAADAP//AAAEAAcAAAACAP//AAAEAAcAAAABAP//AAAEAAcAAAAAAP//AAAEAAcAAAD/////AAAEAAcAAAD+////AAAEAAcAAAD9////AAAEAAcAAAD9/wAAAAACAAsAAAD9/wEAAAACAAsAAAD9/wIAAAACAAsAAAD+/wIAAAACAAsAAAD+/wEAAAABAAEAAAD+/wAAAAACAAsAAAD//wAAAAABAAEAAAD//wEAAAABAAEAAAD//wIAAAABAAEAAAAAAAIAAAACAAsAAAAAAAEAAAACAAsAAAAAAAAAAAACAAsAAAABAAAAAAACAAsAAAACAAAAAAAEAAkAAAACAAEAAAACAAsAAAACAAIAAAADAAYAAAABAAIAAAACAAsAAAABAAEAAAACAAsAAAADAAIAAAAEAAYAAAADAAEAAAACAAsAAAAEAAEAAAABAAEAAAAEAAIAAAAFAAYAAAAEAAAAAAABAAEAAAAFAAAAAAABAAEAAAAGAAAAAAACAAsAAAAGAAEAAAACAAsAAAAGAAIAAAACAAsAAAAFAAIAAAABAAEAAAAFAAEAAAACAAsAAAA=")
 
 [node name="Ball" parent="." index="2"]
 script = ExtResource("3_xovua")
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="." index="5"]
-
-[node name="Control" type="Control" parent="CanvasLayer2" index="0"]
-process_mode = 2
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Water" type="Area2D" parent="." index="3"]
 script = ExtResource("4_7yj33")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer2/Control" index="0"]
-layout_mode = 0
-offset_left = 315.0
-offset_top = 6.0
-offset_right = 768.0
-offset_bottom = 347.0
-texture = ExtResource("5_183my")
-expand_mode = 1
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Water" index="0"]
+position = Vector2(-126, 47.5)
+shape = SubResource("RectangleShape2D_m628i")
 
-[node name="Label" type="Label" parent="CanvasLayer2/Control" index="1"]
-layout_mode = 0
-offset_left = 506.0
-offset_top = 110.0
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Water" index="1"]
+position = Vector2(63.5, -33.25)
+shape = SubResource("RectangleShape2D_ouymd")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Water" index="2"]
+position = Vector2(66.75, 128.125)
+shape = SubResource("RectangleShape2D_ouymd")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Water" index="3"]
+position = Vector2(110.25, 97)
+shape = SubResource("RectangleShape2D_kmvgo")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Water" index="4"]
+position = Vector2(78, 14.625)
+shape = SubResource("RectangleShape2D_v7gcq")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Water" index="5"]
+position = Vector2(271, 15.75)
+shape = SubResource("RectangleShape2D_v7gcq")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Water" index="6"]
+position = Vector2(273, 81)
+shape = SubResource("RectangleShape2D_v7gcq")
+
+[node name="Sand" type="Area2D" parent="Water" index="7"]
+script = ExtResource("5_183my")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Water/Sand" index="0"]
+position = Vector2(30.75, 49)
+shape = SubResource("RectangleShape2D_sedmy")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Water/Sand" index="1"]
+position = Vector2(223, 47)
+shape = SubResource("RectangleShape2D_sedmy")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Water/Sand" index="2"]
+position = Vector2(-63.5, 16.5)
+shape = SubResource("RectangleShape2D_p3joj")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Water/Sand" index="3"]
+position = Vector2(-65, 79.25)
+shape = SubResource("RectangleShape2D_p3joj")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Water/Sand" index="4"]
+position = Vector2(96.25, 48)
+shape = SubResource("RectangleShape2D_p3joj")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Water/Sand" index="5"]
+position = Vector2(-80, 46.25)
+shape = SubResource("RectangleShape2D_cy3gl")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Water/Sand" index="6"]
+position = Vector2(177.75, 47.9375)
+shape = SubResource("RectangleShape2D_cy3gl")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Water/Sand" index="7"]
+position = Vector2(272, 49)
+shape = SubResource("RectangleShape2D_cy3gl")
+
+[node name="Control" parent="CanvasLayer" index="0"]
+offset_left = -183.0
+offset_top = -120.0
+offset_right = 510.0
+offset_bottom = 181.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" parent="CanvasLayer/Control" index="0"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.63492066
+anchor_top = 0.78405315
+anchor_right = 0.63492066
+anchor_bottom = 0.78405315
+offset_left = 124.0
+offset_top = -27.0
 offset_right = 577.0
+offset_bottom = 314.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" parent="CanvasLayer/Control" index="1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6450216
+anchor_top = 0.7873754
+anchor_right = 0.6450216
+anchor_bottom = 0.7873754
+offset_left = 309.0
+offset_top = 70.0
+offset_right = 380.0
+offset_bottom = 145.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Retry" parent="CanvasLayer/Control" index="2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6176046
+anchor_top = 0.7873754
+anchor_right = 0.6176046
+anchor_bottom = 0.7873754
+offset_left = 275.0
+offset_top = 154.0
+offset_right = 325.0
 offset_bottom = 185.0
-text = "You won!
+metadata/_edit_use_anchors_ = true
 
-"
+[node name="Menu" parent="CanvasLayer/Control" index="3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.61904764
+anchor_top = 0.76744187
+anchor_right = 0.61904764
+anchor_bottom = 0.76744187
+offset_left = 272.0
+offset_top = 190.0
+offset_right = 325.0
+offset_bottom = 221.0
+metadata/_edit_use_anchors_ = true
 
-[node name="Retry" type="Button" parent="CanvasLayer2/Control" index="2"]
-layout_mode = 0
-offset_left = 489.0
-offset_top = 179.0
-offset_right = 539.0
-offset_bottom = 210.0
-text = "Retry
-"
+[node name="Exit" parent="CanvasLayer/Control" index="4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6363636
+anchor_top = 0.7807309
+anchor_right = 0.6363636
+anchor_bottom = 0.7807309
+offset_left = 369.0
+offset_top = 190.0
+offset_right = 406.0
+offset_bottom = 221.0
+metadata/_edit_use_anchors_ = true
 
-[node name="Menu" type="Button" parent="CanvasLayer2/Control" index="3"]
-layout_mode = 0
-offset_left = 488.0
-offset_top = 211.0
-offset_right = 541.0
-offset_bottom = 242.0
-text = "Menu"
+[node name="Resume" parent="CanvasLayer/Control" index="5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.64646465
+anchor_top = 0.65448505
+anchor_right = 0.64646465
+anchor_bottom = 0.65448505
+offset_left = 346.0
+offset_top = 188.0
+offset_right = 416.0
+offset_bottom = 219.0
+metadata/_edit_use_anchors_ = true
 
-[node name="Exit" type="Button" parent="CanvasLayer2/Control" index="4"]
-layout_mode = 0
-offset_left = 559.0
-offset_top = 210.0
-offset_right = 596.0
-offset_bottom = 241.0
-text = "Exit"
+[node name="NextLevel" parent="CanvasLayer/Control" index="6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.64069265
+anchor_top = 0.7607973
+anchor_right = 0.64069265
+anchor_bottom = 0.7607973
+offset_left = 339.0
+offset_top = 157.0
+offset_right = 429.0
+offset_bottom = 188.0
+metadata/_edit_use_anchors_ = true
 
-[node name="Resume" type="Button" parent="CanvasLayer2/Control" index="5"]
-layout_mode = 0
-offset_left = 545.0
-offset_top = 177.0
-offset_right = 553.0
-offset_bottom = 185.0
-text = "Resume"
-
-[node name="NextLevel" type="Button" parent="CanvasLayer2/Control" index="6"]
-layout_mode = 0
-offset_left = 539.0
-offset_top = 179.0
-offset_right = 629.0
-offset_bottom = 210.0
-text = "Next Level"
-
-[connection signal="button_up" from="CanvasLayer2/Control/Retry" to="CanvasLayer2/Control" method="_on_retry_button_up"]
-[connection signal="button_up" from="CanvasLayer2/Control/Menu" to="CanvasLayer2/Control" method="_on_menu_button_up"]
-[connection signal="button_up" from="CanvasLayer2/Control/Exit" to="CanvasLayer2/Control" method="_on_exit_button_up"]
-[connection signal="button_up" from="CanvasLayer2/Control/Resume" to="CanvasLayer2/Control" method="_on_resume_button_up"]
-[connection signal="pressed" from="CanvasLayer2/Control/Resume" to="CanvasLayer2/Control" method="_on_resume_pressed"]
-[connection signal="button_up" from="CanvasLayer2/Control/NextLevel" to="CanvasLayer2/Control" method="_on_next_level_button_up"]
+[connection signal="body_entered" from="Water" to="Water" method="_on_ball_body_entered"]
+[connection signal="body_entered" from="Water/Sand" to="Water/Sand" method="_on_ball_body_entered"]

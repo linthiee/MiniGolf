@@ -84,6 +84,8 @@ func _input(event: InputEvent) -> void:
 				var force = dragVector.normalized() * min(dragVector.length() * powerScale, maxForce)
 				ball.apply_impulse(force)  
 				registerMove()
+				if ball.collision:
+					print("ano")
 		queue_redraw()
 
 	if event is InputEventMouseMotion and isMouseDown:

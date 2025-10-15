@@ -4,4 +4,4 @@ extends Area2D
 
 func _on_ball_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
-		ball.linear_velocity *= 0.5
+		body.linear_velocity *= 0.5

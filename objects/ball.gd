@@ -4,6 +4,7 @@ var startPosition: Vector2
 
 var moves = 0
 var maxMoves = 5
+var collision
 
 func _ready():
 	startPosition = global_position
